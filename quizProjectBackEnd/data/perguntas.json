@@ -1,0 +1,222 @@
+[
+    {
+        "id": 1,
+        "pergunta": "Qual dos seguintes tipos em JavaScript é um tipo por referência?",
+        "opcoes": [
+            "a) string",
+            "b) number",
+            "c) boolean",
+            "d) object"
+        ],
+        "resposta": "d"
+    },
+    {
+        "id": 2,
+        "pergunta": "O que é o DOM em JavaScript?",
+        "opcoes": [
+            "a) Um método para criar sombras em elementos HTML.",
+            "b) Uma ferramenta para depuração de código.",
+            "c) A representação em memória da estrutura de um documento HTML que permite interação com o documento por meio de scripts.",
+            "d) Um tipo de dado para armazenar informações de data e hora."
+        ],
+        "resposta": "c"
+    },
+    {
+        "id": 3,
+        "pergunta": "Qual é a diferença entre 'null' e 'undefined' em JavaScript?",
+        "opcoes": [
+            "a) Não há diferença, ambos representam valores vazios.",
+            "b) 'null' é usado para valores não numéricos, enquanto 'undefined' é usado para valores numéricos.",
+            "c) 'null' é atribuído explicitamente a uma variável, enquanto 'undefined' é o valor padrão de uma variável não inicializada.",
+            "d) 'null' indica uma referência a um objeto inexistente, enquanto 'undefined' indica uma variável não declarada ou um objeto sem valor atribuído."
+        ],
+        "resposta": "d"
+    },
+    {
+        "id": 4,
+        "pergunta": "O que é 'hoisting' em JavaScript?",
+        "opcoes": [
+            "a) Um termo usado para descrever a velocidade de execução de código JavaScript.",
+            "b) Um conceito em que as declarações de variáveis e funções são movidas para o topo de seu escopo antes da execução do código.",
+            "c) Uma técnica para aplicar animações suaves em elementos HTML.",
+            "d) Uma função interna do JavaScript para criar elementos de alta qualidade."
+        ],
+        "resposta": "b"
+    },
+    {
+        "id": 5,
+        "pergunta": "O que é um 'closure' em JavaScript?",
+        "opcoes": [
+            "a) Um tipo de estrutura de controle usada para iterar por elementos de uma matriz.",
+            "b) Um objeto especial para armazenar dados sensíveis.",
+            "c) Um tipo de iteração de loop.",
+            "d) Uma função que captura variáveis de seu contexto externo, permitindo que as variáveis permaneçam acessíveis mesmo após a conclusão da execução da função externa."
+        ],
+        "resposta": "d"
+    },
+    {
+        "id": 6,
+        "pergunta": "O que é um 'callback' em JavaScript?",
+        "opcoes": [
+            "a) Uma função que retorna um valor direto.",
+            "b) Uma função que lida com exceções.",
+            "c) Uma função que é passada como argumento para outra função e é executada após a conclusão dessa função.",
+            "d) Uma função que lida com operações matemáticas complexas."
+        ],
+        "resposta": "c"
+    },
+    {
+        "id": 7,
+        "pergunta": "Qual é a diferença entre 'let', 'const' e 'var' em relação à declaração de variáveis?",
+        "opcoes": [
+            "a) Não há diferença entre eles, são palavras-chave alternativas para declarar variáveis.",
+            "b) 'let' é usado para variáveis globais, 'const' para variáveis de bloco e 'var' para variáveis locais.",
+            "c) 'let' e 'const' são alternativas modernas para 'var', com escopo de bloco para 'let' e constância para 'const'.",
+            "d) 'let' é usado para variáveis globais, 'const' para variáveis locais e 'var' é obsoleto."
+        ],
+        "resposta": "c"
+    },
+    {
+        "id": 8,
+        "pergunta": "O que é o conceito de 'event bubbling' em JavaScript?",
+        "opcoes": [
+            "a) Uma técnica para redirecionar eventos de uma página para outra.",
+            "b) Uma abordagem para manipular eventos de teclado.",
+            "c) Um comportamento onde um evento ocorrido em um elemento é propagado para seus elementos ancestrais na hierarquia do DOM.",
+            "d) Uma técnica para criar elementos gráficos complexos usando eventos."
+        ],
+        "resposta": "c"
+    },
+    {
+        "id": 9,
+        "pergunta": "O que é 'promises' em JavaScript?",
+        "opcoes": [
+            "a) Declarações especiais usadas para fornecer garantias formais sobre a funcionalidade do código.",
+            "b) Uma técnica para garantir que um código seja executado antes de outro.",
+            "c) Um tipo de objeto usado para trabalhar com operações assíncronas em JavaScript, representando um valor que pode estar disponível agora, no futuro ou nunca.",
+            "d) Uma função usada para adicionar estilos especiais a elementos HTML."
+        ],
+        "resposta": "c"
+    },
+    {
+        "id": 10,
+        "pergunta": "O que é 'strict mode' em JavaScript?",
+        "opcoes": [
+            "a) Um modo especial para depuração de código.",
+            "b) Um conjunto de recursos avançados para a criação de interfaces gráficas.",
+            "c) Uma técnica para otimizar o desempenho de loops.",
+            "d) Um modo que faz com que o JavaScript seja executado em um modo mais restrito, aplicando regras mais rigorosas para a escrita de código e evitando erros comuns."
+        ],
+        "resposta": "d"
+    },
+    {
+        "id": 11,
+        "pergunta": "Qual dos seguintes tipos em C# é um tipo por valor?",
+        "opcoes": [
+            "a) string",
+            "b) object",
+            "c) int",
+            "d) List"
+        ],
+        "resposta": "c"
+    },
+    {
+        "id": 12,
+        "pergunta": "O que é boxing e unboxing em C#?",
+        "opcoes": [
+            "a) Técnicas para mover dados entre diferentes namespaces.",
+            "b) Processo de empacotar um valor de um tipo por valor em um objeto.",
+            "c) Conversão de código não gerenciado para código gerenciado.",
+            "d) Técnicas avançadas de serialização."
+        ],
+        "resposta": "b"
+    },
+    {
+        "id": 13,
+        "pergunta": "Qual é o objetivo da diretiva 'using' em C#?",
+        "opcoes": [
+            "a) Definir um novo namespace personalizado.",
+            "b) Importar bibliotecas para o projeto.",
+            "c) Especificar variáveis de ambiente.",
+            "d) Criar instâncias de classes."
+        ],
+        "resposta": "b"
+    },
+    {
+        "id": 14,
+        "pergunta": "Em C#, qual é a diferença entre 'readonly' e 'const'?",
+        "opcoes": [
+            "a) 'readonly' é usado para valores constantes, enquanto 'const' é usado para membros somente leitura.",
+            "b) 'readonly' é usado para membros somente leitura, enquanto 'const' é usado para valores constantes.",
+            "c) 'readonly' e 'const' são usados indistintamente, não há diferença.",
+            "d) 'readonly' é usado para propriedades, enquanto 'const' é usado para métodos."
+        ],
+        "resposta": "b"
+    },
+    {
+        "id": 15,
+        "pergunta": "O que é um 'indexer' em C#?",
+        "opcoes": [
+            "a) Um tipo de dado exclusivo para listas.",
+            "b) Um tipo de iteração sobre matrizes.",
+            "c) Um membro de uma classe que permite acesso como se fosse uma matriz.",
+            "d) Um operador especial para realizar indexação de strings."
+        ],
+        "resposta": "c"
+    },
+    {
+        "id": 16,
+        "pergunta": "O que é o método 'yield' utilizado para fazer em C#?",
+        "opcoes": [
+            "a) Realizar ordenação de uma lista.",
+            "b) Interromper a execução de um loop.",
+            "c) Gerar valores sob demanda em uma coleção.",
+            "d) Iniciar uma tarefa assíncrona."
+        ],
+        "resposta": "c"
+    },
+    {
+        "id": 17,
+        "pergunta": "Qual é a diferença entre 'dynamic' e 'var' em C#?",
+        "opcoes": [
+            "a) 'dynamic' é usado para tipos fortemente tipados, enquanto 'var' é usado para tipos dinâmicos.",
+            "b) 'dynamic' é usado para tipos estáticos, enquanto 'var' é usado para tipos de coleções.",
+            "c) 'dynamic' é usado para tipos que só podem ser resolvidos em tempo de compilação, enquanto 'var' é usado para tipos que só podem ser resolvidos em tempo de execução.",
+            "d) 'dynamic' é usado para tipos que só podem ser resolvidos em tempo de execução, enquanto 'var' é usado para tipos que são inferidos pelo compilador."
+        ],
+        "resposta": "d"
+    },
+    {
+        "id": 18,
+        "pergunta": "O que é um 'lambda expression' em C#?",
+        "opcoes": [
+            "a) Uma função anônima que pode ser tratada como um objeto.",
+            "b) Uma expressão matemática usada em cálculos complexos.",
+            "c) Um tipo especial de operador ternário.",
+            "d) Uma função que não requer argumentos."
+        ],
+        "resposta": "a"
+    },
+    {
+        "id": 19,
+        "pergunta": "Qual é a finalidade do operador '?.', conhecido como operador de navegação segura?",
+        "opcoes": [
+            "a) Fazer a navegação na web de forma segura.",
+            "b) Acessar membros de um objeto somente se o objeto não for nulo.",
+            "c) Realizar operações de arredondamento de números.",
+            "d) Controlar o fluxo de execução em loops."
+        ],
+        "resposta": "b"
+    },
+    {
+        "id": 20,
+        "pergunta": "O que são tipos anuláveis (nullable types) em C#?",
+        "opcoes": [
+            "a) Tipos que podem ser usados para definir nulos em expressões matemáticas.",
+            "b) Tipos que podem ser convertidos para tipos diferentes.",
+            "c) Tipos que podem ser utilizados para criar novos tipos de dados.",
+            "d) Tipos que podem representar um valor ou um valor nulo."
+        ],
+        "resposta": "d"
+    }
+]

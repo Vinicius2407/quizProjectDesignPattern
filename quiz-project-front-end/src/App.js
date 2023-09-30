@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+import './App.scss';
+
 function App() {
   const [quizStarted, setQuizStarted] = useState(false);
   const [question, setQuestion] = useState(null);
@@ -46,6 +48,12 @@ function App() {
   };
 
   const submitAnswer = async () => {
+
+    if (answer == null || answer == "") {
+      alert("Digite uma resposta");
+      return;
+    }
+
     try {
       const response = await axios.post(`${serverUrl}/submit-answer`, {
         user_answer: answer,
@@ -61,30 +69,38 @@ function App() {
     }
   };
 
+  function setAnswerValue(valor) {
+    setAnswer(valor.toString());
+  }
+
   return (
     <div className="App">
       <h1>Quiz App</h1>
       {!quizStarted ? (
         <button onClick={startQuiz}>Iniciar Quiz</button>
       ) : (
-        <div>
+        <div className='pergunta'>
           {question && (
             <div>
-              <h2>Pergunta:</h2>
-              <p>{question.pergunta}</p>
+              <div>
+                <h2>Pergunta:</h2>
+                <p>{question.pergunta}</p>
+              </div>
               <h3>Opções:</h3>
               <ul>
-                {Object.keys(question.opcoes).map((chave) => (
-                  <li key={chave}>{question.opcoes[chave]}</li>
+                {Object.keys(question.opcoes).map((chave, index) => (
+                  <li key={chave} onClick={() => setAnswerValue(index + 1)}>{index + 1} {question.opcoes[chave]}</li>
                 ))}
               </ul>
-              <input
-                type="text"
-                placeholder="Sua resposta"
-                value={answer}
-                onChange={(e) => setAnswer(e.target.value)}
-              />
-              <button onClick={submitAnswer}>Enviar Resposta</button>
+              <div className='input-botao'>
+                <input
+                  type="number"
+                  placeholder="Sua resposta"
+                  value={answer}
+                  onChange={(e) => setAnswer(e.target.value)}
+                />
+                <button className='btn btn-primary' disabled={answer == null || answer == ""} onClick={submitAnswer}>Enviar Resposta</button>
+              </div>
             </div>
           )}
         </div>

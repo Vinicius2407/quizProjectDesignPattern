@@ -1,263 +1,262 @@
 [
-    {
-      "id": 1,
-      "tema": "JavaScript",
-      "dificuldade": "Fácil",
-      "pergunta": "Qual dos seguintes tipos em JavaScript é um tipo por referência?",
-      "opcoes": {
-        "1": "string",
-        "2": "number",
-        "3": "boolean",
-        "4": "object"
-      },
-      "resposta": "4"
+  {
+    "id": 1,
+    "tema": "JavaScript",
+    "dificuldade": 1,
+    "pergunta": "Qual dos seguintes tipos em JavaScript é um tipo por referência?",
+    "opcoes": {
+      "1": "string",
+      "2": "number",
+      "3": "boolean",
+      "4": "object"
     },
-    {
-      "id": 2,
-      "tema": "JavaScript",
-      "dificuldade": "Fácil",
-      "pergunta": "Qual é o conceito de 'event bubbling' em JavaScript?",
-      "opcoes": {
-        "1": "Uma técnica para redirecionar eventos de uma página para outra.",
-        "2": "Uma abordagem para manipular eventos de teclado.",
-        "3": "Um comportamento onde um evento ocorrido em um elemento é propagado para seus elementos ancestrais na hierarquia do DOM.",
-        "4": "Uma técnica para criar elementos gráficos complexos usando eventos."
-      },
-      "resposta": "3"
+    "resposta": "4"
+  },
+  {
+    "id": 2,
+    "tema": "JavaScript",
+    "dificuldade": 1,
+    "pergunta": "Qual é o conceito de 'event bubbling' em JavaScript?",
+    "opcoes": {
+      "1": "Uma técnica para redirecionar eventos de uma página para outra.",
+      "2": "Uma abordagem para manipular eventos de teclado.",
+      "3": "Um comportamento onde um evento ocorrido em um elemento é propagado para seus elementos ancestrais na hierarquia do DOM.",
+      "4": "Uma técnica para criar elementos gráficos complexos usando eventos."
     },
-    {
-      "id": 3,
-      "tema": "JavaScript",
-      "dificuldade": "Fácil",
-      "pergunta": "O que é 'strict mode' em JavaScript?",
-      "opcoes": {
-        "1": "Um modo especial para depuração de código.",
-        "2": "Um conjunto de recursos avançados para a criação de interfaces gráficas.",
-        "3": "Uma técnica para otimizar o desempenho de loops.",
-        "4": "Um modo que faz com que o JavaScript seja executado em um modo mais restrito, aplicando regras mais rigorosas para a escrita de código e evitando erros comuns."
-      },
-      "resposta": "4"
+    "resposta": "3"
+  },
+  {
+    "id": 3,
+    "tema": "JavaScript",
+    "dificuldade": 1,
+    "pergunta": "O que é 'strict mode' em JavaScript?",
+    "opcoes": {
+      "1": "Um modo especial para depuração de código.",
+      "2": "Um conjunto de recursos avançados para a criação de interfaces gráficas.",
+      "3": "Uma técnica para otimizar o desempenho de loops.",
+      "4": "Um modo que faz com que o JavaScript seja executado em um modo mais restrito, aplicando regras mais rigorosas para a escrita de código e evitando erros comuns."
     },
-    {
-      "id": 4,
-      "tema": "JavaScript",
-      "dificuldade": "Fácil",
-      "pergunta": "O que é um 'callback' em JavaScript?",
-      "opcoes": {
-        "1": "Uma função que retorna um valor direto.",
-        "2": "Uma função que lida com exceções.",
-        "3": "Uma função que é passada como argumento para outra função e é executada após a conclusão dessa função.",
-        "4": "Uma função que lida com operações matemáticas complexas."
-      },
-      "resposta": "3"
+    "resposta": "4"
+  },
+  {
+    "id": 4,
+    "tema": "JavaScript",
+    "dificuldade": 1,
+    "pergunta": "O que é um 'callback' em JavaScript?",
+    "opcoes": {
+      "1": "Uma função que retorna um valor direto.",
+      "2": "Uma função que lida com exceções.",
+      "3": "Uma função que é passada como argumento para outra função e é executada após a conclusão dessa função.",
+      "4": "Uma função que lida com operações matemáticas complexas."
     },
-    {
-      "id": 5,
-      "tema": "JavaScript",
-      "dificuldade": "Normal",
-      "pergunta": "O que é o DOM em JavaScript?",
-      "opcoes": {
-        "1": "Um método para criar sombras em elementos HTML.",
-        "2": "Uma ferramenta para depuração de código.",
-        "3": "A representação em memória da estrutura de um documento HTML que permite interação com o documento por meio de scripts.",
-        "4": "Um tipo de dado para armazenar informações de data e hora."
-      },
-      "resposta": "3"
+    "resposta": "3"
+  },
+  {
+    "id": 5,
+    "tema": "JavaScript",
+    "dificuldade": 2,
+    "pergunta": "O que é o DOM em JavaScript?",
+    "opcoes": {
+      "1": "Um método para criar sombras em elementos HTML.",
+      "2": "Uma ferramenta para depuração de código.",
+      "3": "A representação em memória da estrutura de um documento HTML que permite interação com o documento por meio de scripts.",
+      "4": "Um tipo de dado para armazenar informações de data e hora."
     },
-    {
-      "id": 6,
-      "tema": "JavaScript",
-      "dificuldade": "Normal",
-      "pergunta": "Qual é a diferença entre 'null' e 'undefined' em JavaScript?",
-      "opcoes": {
-        "1": "Não há diferença, ambos representam valores vazios.",
-        "2": "'null' é usado para valores não numéricos, enquanto 'undefined' é usado para valores numéricos.",
-        "3": "'null' é atribuído explicitamente a uma variável, enquanto 'undefined' é o valor padrão de uma variável não inicializada.",
-        "4": "'null' indica uma referência a um objeto inexistente, enquanto 'undefined' indica uma variável não declarada ou um objeto sem valor atribuído."
-      },
-      "resposta": "4"
+    "resposta": "3"
+  },
+  {
+    "id": 6,
+    "tema": "JavaScript",
+    "dificuldade": 2,
+    "pergunta": "Qual é a diferença entre 'null' e 'undefined' em JavaScript?",
+    "opcoes": {
+      "1": "Não há diferença, ambos representam valores vazios.",
+      "2": "'null' é usado para valores não numéricos, enquanto 'undefined' é usado para valores numéricos.",
+      "3": "'null' é atribuído explicitamente a uma variável, enquanto 'undefined' é o valor padrão de uma variável não inicializada.",
+      "4": "'null' indica uma referência a um objeto inexistente, enquanto 'undefined' indica uma variável não declarada ou um objeto sem valor atribuído."
     },
-    {
-      "id": 7,
-      "tema": "JavaScript",
-      "dificuldade": "Normal",
-      "pergunta": "O que é 'hoisting' em JavaScript?",
-      "opcoes": {
-        "1": "Um termo usado para descrever a velocidade de execução de código JavaScript.",
-        "2": "Um conceito em que as declarações de variáveis e funções são movidas para o topo de seu escopo antes da execução do código.",
-        "3": "Uma técnica para aplicar animações suaves em elementos HTML.",
-        "4": "Uma função interna do JavaScript para criar elementos de alta qualidade."
-      },
-      "resposta": "2"
+    "resposta": "4"
+  },
+  {
+    "id": 7,
+    "tema": "JavaScript",
+    "dificuldade": 2,
+    "pergunta": "O que é 'hoisting' em JavaScript?",
+    "opcoes": {
+      "1": "Um termo usado para descrever a velocidade de execução de código JavaScript.",
+      "2": "Um conceito em que as declarações de variáveis e funções são movidas para o topo de seu escopo antes da execução do código.",
+      "3": "Uma técnica para aplicar animações suaves em elementos HTML.",
+      "4": "Uma função interna do JavaScript para criar elementos de alta qualidade."
     },
-    {
-      "id": 8,
-      "tema": "JavaScript",
-      "dificuldade": "Normal",
-      "pergunta": "Qual é a diferença entre 'let', 'const' e 'var' em relação à declaração de variáveis?",
-      "opcoes": {
-        "1": "Não há diferença entre eles, são palavras-chave alternativas para declarar variáveis.",
-        "2": "'let' é usado para variáveis globais, 'const' para variáveis de bloco e 'var' para variáveis locais.",
-        "3": "'let' e 'const' são alternativas modernas para 'var', com escopo de bloco para 'let' e constância para 'const'.",
-        "4": "'let' é usado para variáveis globais, 'const' para variáveis locais e 'var' é obsoleto."
-      },
-      "resposta": "3"
+    "resposta": "2"
+  },
+  {
+    "id": 8,
+    "tema": "JavaScript",
+    "dificuldade": 2,
+    "pergunta": "Qual é a diferença entre 'let', 'const' e 'var' em relação à declaração de variáveis?",
+    "opcoes": {
+      "1": "Não há diferença entre eles, são palavras-chave alternativas para declarar variáveis.",
+      "2": "'let' é usado para variáveis globais, 'const' para variáveis de bloco e 'var' para variáveis locais.",
+      "3": "'let' e 'const' são alternativas modernas para 'var', com escopo de bloco para 'let' e constância para 'const'.",
+      "4": "'let' é usado para variáveis globais, 'const' para variáveis locais e 'var' é obsoleto."
     },
-    {
-      "id": 9,
-      "tema": "JavaScript",
-      "dificuldade": "Difícil",
-      "pergunta": "O que é um 'closure' em JavaScript?",
-      "opcoes": {
-        "1": "Um tipo de estrutura de controle usada para iterar por elementos de uma matriz.",
-        "2": "Um objeto especial para armazenar dados sensíveis.",
-        "3": "Um tipo de iteração de loop.",
-        "4": "Uma função que captura variáveis de seu contexto externo, permitindo que as variáveis permaneçam acessíveis mesmo após a conclusão da execução da função externa."
-      },
-      "resposta": "4"
+    "resposta": "3"
+  },
+  {
+    "id": 9,
+    "tema": "JavaScript",
+    "dificuldade": 3,
+    "pergunta": "O que é um 'closure' em JavaScript?",
+    "opcoes": {
+      "1": "Um tipo de estrutura de controle usada para iterar por elementos de uma matriz.",
+      "2": "Um objeto especial para armazenar dados sensíveis.",
+      "3": "Um tipo de iteração de loop.",
+      "4": "Uma função que captura variáveis de seu contexto externo, permitindo que as variáveis permaneçam acessíveis mesmo após a conclusão da execução da função externa."
     },
-    {
-      "id": 10,
-      "tema": "JavaScript",
-      "dificuldade": "Difícil",
-      "pergunta": "O que é 'promises' em JavaScript?",
-      "opcoes": {
-        "1": "Declarações especiais usadas para fornecer garantias formais sobre a funcionalidade do código.",
-        "2": "Uma técnica para garantir que um código seja executado antes de outro.",
-        "3": "Um tipo de objeto usado para trabalhar com operações assíncronas em JavaScript, representando um valor que pode estar disponível agora, no futuro ou nunca.",
-        "4": "Uma função usada para adicionar estilos especiais a elementos HTML."
-      },
-      "resposta": "3"
+    "resposta": "4"
+  },
+  {
+    "id": 10,
+    "tema": "JavaScript",
+    "dificuldade": 3,
+    "pergunta": "O que é 'promises' em JavaScript?",
+    "opcoes": {
+      "1": "Declarações especiais usadas para fornecer garantias formais sobre a funcionalidade do código.",
+      "2": "Uma técnica para garantir que um código seja executado antes de outro.",
+      "3": "Um tipo de objeto usado para trabalhar com operações assíncronas em JavaScript, representando um valor que pode estar disponível agora, no futuro ou nunca.",
+      "4": "Uma função usada para adicionar estilos especiais a elementos HTML."
     },
-    {
-      "id": 11,
-      "tema": "C#",
-      "dificuldade": "Fácil",
-      "pergunta": "Qual dos seguintes tipos em C# é um tipo por valor?",
-      "opcoes": {
-        "1": "string",
-        "2": "object",
-        "3": "int",
-        "4": "List"
-      },
-      "resposta": "3"
+    "resposta": "3"
+  },
+  {
+    "id": 11,
+    "tema": "C#",
+    "dificuldade": 1,
+    "pergunta": "Qual dos seguintes tipos em C# é um tipo por valor?",
+    "opcoes": {
+      "1": "string",
+      "2": "object",
+      "3": "int",
+      "4": "List"
     },
-    {
-      "id": 12,
-      "tema": "C#",
-      "dificuldade": "Fácil",
-      "pergunta": "O que é boxing e unboxing em C#?",
-      "opcoes": {
-        "1": "Técnicas para mover dados entre diferentes namespaces.",
-        "2": "Processo de empacotar um valor de um tipo por valor em um objeto.",
-        "3": "Conversão de código não gerenciado para código gerenciado.",
-        "4": "Técnicas avançadas de serialização."
-      },
-      "resposta": "2"
+    "resposta": "3"
+  },
+  {
+    "id": 12,
+    "tema": "C#",
+    "dificuldade": 1,
+    "pergunta": "O que é boxing e unboxing em C#?",
+    "opcoes": {
+      "1": "Técnicas para mover dados entre diferentes namespaces.",
+      "2": "Processo de empacotar um valor de um tipo por valor em um objeto.",
+      "3": "Conversão de código não gerenciado para código gerenciado.",
+      "4": "Técnicas avançadas de serialização."
     },
-    {
-      "id": 13,
-      "tema": "C#",
-      "dificuldade": "Fácil",
-      "pergunta": "Qual é o objetivo da diretiva 'using' em C#?",
-      "opcoes": {
-        "1": "Definir um novo namespace personalizado.",
-        "2": "Importar bibliotecas para o projeto.",
-        "3": "Especificar variáveis de ambiente.",
-        "4": "Criar instâncias de classes."
-      },
-      "resposta": "2"
+    "resposta": "2"
+  },
+  {
+    "id": 13,
+    "tema": "C#",
+    "dificuldade": 1,
+    "pergunta": "Qual é o objetivo da diretiva 'using' em C#?",
+    "opcoes": {
+      "1": "Definir um novo namespace personalizado.",
+      "2": "Importar bibliotecas para o projeto.",
+      "3": "Especificar variáveis de ambiente.",
+      "4": "Criar instâncias de classes."
     },
-    {
-      "id": 14,
-      "tema": "C#",
-      "dificuldade": "Fácil",
-      "pergunta": "Em C#, qual é a diferença entre 'readonly' e 'const'?",
-      "opcoes": {
-        "1": "'readonly' é usado para valores constantes, enquanto 'const' é usado para membros somente leitura.",
-        "2": "'readonly' é usado para membros somente leitura, enquanto 'const' é usado para valores constantes.",
-        "3": "'readonly' e 'const' são usados indistintamente, não há diferença.",
-        "4": "'readonly' é usado para propriedades, enquanto 'const' é usado para métodos."
-      },
-      "resposta": "2"
+    "resposta": "2"
+  },
+  {
+    "id": 14,
+    "tema": "C#",
+    "dificuldade": 1,
+    "pergunta": "Em C#, qual é a diferença entre 'readonly' e 'const'?",
+    "opcoes": {
+      "1": "'readonly' é usado para valores constantes, enquanto 'const' é usado para membros somente leitura.",
+      "2": "'readonly' é usado para membros somente leitura, enquanto 'const' é usado para valores constantes.",
+      "3": "'readonly' e 'const' são usados indistintamente, não há diferença.",
+      "4": "'readonly' é usado para propriedades, enquanto 'const' é usado para métodos."
     },
-    {
-      "id": 15,
-      "tema": "C#",
-      "dificuldade": "Normal",
-      "pergunta": "O que é um 'indexer' em C#?",
-      "opcoes": {
-        "1": "Um tipo de dado exclusivo para listas.",
-        "2": "Um tipo de iteração sobre matrizes.",
-        "3": "Um membro de uma classe que permite acesso como se fosse uma matriz.",
-        "4": "Um operador especial para realizar indexação de strings."
-      },
-      "resposta": "3"
+    "resposta": "2"
+  },
+  {
+    "id": 15,
+    "tema": "C#",
+    "dificuldade": 2,
+    "pergunta": "O que é um 'indexer' em C#?",
+    "opcoes": {
+      "1": "Um tipo de dado exclusivo para listas.",
+      "2": "Um tipo de iteração sobre matrizes.",
+      "3": "Um membro de uma classe que permite acesso como se fosse uma matriz.",
+      "4": "Um operador especial para realizar indexação de strings."
     },
-    {
-      "id": 16,
-      "tema": "C#",
-      "dificuldade": "Normal",
-      "pergunta": "O que é o método 'yield' utilizado para fazer em C#?",
-      "opcoes": {
-        "1": "Realizar ordenação de uma lista.",
-        "2": "Interromper a execução de um loop.",
-        "3": "Gerar valores sob demanda em uma coleção.",
-        "4": "Iniciar uma tarefa assíncrona."
-      },
-      "resposta": "3"
+    "resposta": "3"
+  },
+  {
+    "id": 16,
+    "tema": "C#",
+    "dificuldade": 2,
+    "pergunta": "O que é o método 'yield' utilizado para fazer em C#?",
+    "opcoes": {
+      "1": "Realizar ordenação de uma lista.",
+      "2": "Interromper a execução de um loop.",
+      "3": "Gerar valores sob demanda em uma coleção.",
+      "4": "Iniciar uma tarefa assíncrona."
     },
-    {
-      "id": 17,
-      "tema": "C#",
-      "dificuldade": "Normal",
-      "pergunta": "Qual é a diferença entre 'dynamic' e 'var' em C#?",
-      "opcoes": {
-        "1": "'dynamic' é usado para tipos fortemente tipados, enquanto 'var' é usado para tipos dinâmicos.",
-        "2": "'dynamic' é usado para tipos estáticos, enquanto 'var' é usado para tipos de coleções.",
-        "3": "'dynamic' é usado para tipos que só podem ser resolvidos em tempo de compilação, enquanto 'var' é usado para tipos que só podem ser resolvidos em tempo de execução.",
-        "4": "'dynamic' é usado para tipos que só podem ser resolvidos em tempo de execução, enquanto 'var' é usado para tipos que são inferidos pelo compilador."
-      },
-      "resposta": "4"
+    "resposta": "3"
+  },
+  {
+    "id": 17,
+    "tema": "C#",
+    "dificuldade": 2,
+    "pergunta": "Qual é a diferença entre 'dynamic' e 'var' em C#?",
+    "opcoes": {
+      "1": "'dynamic' é usado para tipos fortemente tipados, enquanto 'var' é usado para tipos dinâmicos.",
+      "2": "'dynamic' é usado para tipos estáticos, enquanto 'var' é usado para tipos de coleções.",
+      "3": "'dynamic' é usado para tipos que só podem ser resolvidos em tempo de compilação, enquanto 'var' é usado para tipos que só podem ser resolvidos em tempo de execução.",
+      "4": "'dynamic' é usado para tipos que só podem ser resolvidos em tempo de execução, enquanto 'var' é usado para tipos que são inferidos pelo compilador."
     },
-    {
-      "id": 18,
-      "tema": "C#",
-      "dificuldade": "Normal",
-      "pergunta": "O que é um 'lambda expression' em C#?",
-      "opcoes": {
-        "1": "Uma função anônima que pode ser tratada como um objeto.",
-        "2": "Uma expressão matemática usada em cálculos complexos.",
-        "3": "Um tipo especial de operador ternário.",
-        "4": "Uma função que não requer argumentos."
-      },
-      "resposta": "1"
+    "resposta": "4"
+  },
+  {
+    "id": 18,
+    "tema": "C#",
+    "dificuldade": 2,
+    "pergunta": "O que é um 'lambda expression' em C#?",
+    "opcoes": {
+      "1": "Uma função anônima que pode ser tratada como um objeto.",
+      "2": "Uma expressão matemática usada em cálculos complexos.",
+      "3": "Um tipo especial de operador ternário.",
+      "4": "Uma função que não requer argumentos."
     },
-    {
-      "id": 19,
-      "tema": "C#",
-      "dificuldade": "Difícil",
-      "pergunta": "Qual é a finalidade do operador '?.', conhecido como operador de navegação segura?",
-      "opcoes": {
-        "1": "Fazer a navegação na web de forma segura.",
-        "2": "Acessar membros de um objeto somente se o objeto não for nulo.",
-        "3": "Realizar operações de arredondamento de números.",
-        "4": "Controlar o fluxo de execução em loops."
-      },
-      "resposta": "2"
+    "resposta": "1"
+  },
+  {
+    "id": 19,
+    "tema": "C#",
+    "dificuldade": 3,
+    "pergunta": "Qual é a finalidade do operador '?.', conhecido como operador de navegação segura?",
+    "opcoes": {
+      "1": "Fazer a navegação na web de forma segura.",
+      "2": "Acessar membros de um objeto somente se o objeto não for nulo.",
+      "3": "Realizar operações de arredondamento de números.",
+      "4": "Controlar o fluxo de execução em loops."
     },
-    {
-      "id": 20,
-      "tema": "C#",
-      "dificuldade": "Difícil",
-      "pergunta": "O que são tipos anuláveis (nullable types) em C#?",
-      "opcoes": {
-        "1": "Tipos que podem ser usados para definir nulos em expressões matemáticas.",
-        "2": "Tipos que podem ser convertidos para tipos diferentes.",
-        "3": "Tipos que podem ser utilizados para criar novos tipos de dados.",
-        "4": "Tipos que podem representar um valor ou um valor nulo."
-      },
-      "resposta": "4"
-    }
-  ]
-  
+    "resposta": "2"
+  },
+  {
+    "id": 20,
+    "tema": "C#",
+    "dificuldade": 3,
+    "pergunta": "O que são tipos anuláveis (nullable types) em C#?",
+    "opcoes": {
+      "1": "Tipos que podem ser usados para definir nulos em expressões matemáticas.",
+      "2": "Tipos que podem ser convertidos para tipos diferentes.",
+      "3": "Tipos que podem ser utilizados para criar novos tipos de dados.",
+      "4": "Tipos que podem representar um valor ou um valor nulo."
+    },
+    "resposta": "4"
+  }
+]

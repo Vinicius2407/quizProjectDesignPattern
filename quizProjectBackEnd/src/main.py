@@ -6,6 +6,7 @@ import json
 app = Flask(__name__)
 CORS(app)
 
+
 class Question:
     def __init__(self, id, pergunta, opcoes, resposta, tema, dificuldade):
         self.id = id
@@ -15,10 +16,19 @@ class Question:
         self.tema = tema
         self.dificuldade = dificuldade
 
+
 class QuestionFactory:
     @staticmethod
     def create(q) -> Question:
-        return Question(q['id'], q['pergunta'], q['opcoes'], q['resposta'], q['tema'], q['dificuldade'])
+        return Question(
+            q["id"],
+            q["pergunta"],
+            q["opcoes"],
+            q["resposta"],
+            q["tema"],
+            q["dificuldade"],
+        )
+
 
 class Strategy:
     @staticmethod
@@ -28,10 +38,14 @@ class Strategy:
         else:
             random.shuffle(vetor)
 
+
 from enum import Enum
+
+
 class StrategyEnum(Enum):
     ORDENADO = 1
     EMBARALHAR = 2
+
 
 class Quiz:
     _instance = None
@@ -47,11 +61,13 @@ class Quiz:
         return cls._instance
 
     def criaQuiz(self, filename):
-        data = json.load(open(filename))
+        with open(filename, "r", encoding="utf-8-sig") as f:
+            data = json.load(f)
+
         questions = data
         self.vetor = [QuestionFactory.create(q) for q in questions]
         acertos = 0
-        Strategy.ordenar(self.vetor, 1)  # Alterei para questões ordenadas como padrão
+        Strategy.ordenar(self.vetor, 2)  # Alterei para questões ordenadas como padrão
 
     def avaliarResposta(self, resposta):
         if resposta == self.vetor[self.questoes].resposta:
@@ -66,38 +82,47 @@ class Quiz:
             return None
         return self.vetor[self.questoes]
 
-quiz_instance = Quiz()
 
-@app.route('/start-quiz', methods=['GET'])
+if __name__ == "__main__":
+    app.run(debug=True)
+
+    quiz_instance = Quiz()
+
+@app.route("/start-quiz", methods=["GET"])
 def start_quiz():
     # Inicialize um novo quiz
-    quiz_instance.criaQuiz("./data/perguntas.json")
+    quiz_instance.criaQuiz("quizProjectBackEnd\data\perguntas.json")
     return jsonify({"message": "Quiz started"})
 
-@app.route('/submit-answer', methods=['POST'])
+@app.route("/submit-answer", methods=["POST"])
 def submit_answer():
     data = request.get_json()
-    user_ans = data.get('user_answer', '').upper()
-    
-    if quiz_instance.avaliarResposta(user_ans):
-        return jsonify({"message": "Quiz completed", "result": quiz_instance.resultado})
-    
-    next_question = quiz_instance.getProximaQuestao()
-    
-    if next_question is not None:
-        return jsonify({
-            "message": "Answer submitted",
-            "result": quiz_instance.resultado,
-            "next_question": {
-                "id": next_question.id,
-                "pergunta": next_question.pergunta,
-                "opcoes": next_question.opcoes,
-                "tema": next_question.tema,
-                "dificuldade": next_question.dificuldade
-            }
-        })
-    else:
-        return jsonify({"message": "Quiz completed", "result": quiz_instance.resultado})
+    user_ans = data.get("user_answer", "").upper()
 
-if __name__ == '__main__':
-    app.run(debug=True)
+    if quiz_instance.avaliarResposta(user_ans):
+        return jsonify(
+            {"message": "Quiz completed", "result": quiz_instance.resultado}
+        )
+
+    next_question = quiz_instance.getProximaQuestao()
+
+    if next_question is not None:
+        return jsonify(
+            {
+                "message": "Answer submitted",
+                "result": quiz_instance.resultado,
+                "next_question": {
+                    "id": next_question.id,
+                    "pergunta": next_question.pergunta,
+                    "opcoes": next_question.opcoes,
+                    "tema": next_question.tema,
+                    "dificuldade": next_question.dificuldade,
+                },
+            }
+        )
+    else:
+        json = jsonify(
+            {"message": "Quiz completed", "result": quiz_instance.resultado}
+        )
+
+        return json

@@ -9,6 +9,8 @@ function App() {
   const [answer, setAnswer] = useState('');
   const [result, setResult] = useState(null);
 
+  var primeira_pergunta = 0;
+
   // Defina o URL do servidor Flask
   const serverUrl = 'http://localhost:5000';
 
@@ -25,31 +27,16 @@ function App() {
       const response = await axios.get(`${serverUrl}/start-quiz`, axiosConfig);
       if (response.data.message === 'Quiz started') {
         setQuizStarted(true);
-        loadNextQuestion();
+        submitAnswer();
       }
     } catch (error) {
       console.error('Erro ao iniciar o quiz', error);
     }
   };
 
-  const loadNextQuestion = async () => {
-    try {
-      const response = await axios.post(`${serverUrl}/submit-answer`, axiosConfig);
-      if (response.data.message === 'Answer submitted') {
-        setQuestion(response.data.next_question);
-        setAnswer('');
-      } else if (response.data.message === 'Quiz completed') {
-        setResult(response.data.result);
-        setQuizStarted(false);
-      }
-    } catch (error) {
-      console.error('Erro ao carregar a próxima pergunta', error);
-    }
-  };
-
   const submitAnswer = async () => {
 
-    if (answer == null || answer == "") {
+    if ((answer === null || answer === "") && (primeira_pergunta !== 0)) {
       alert("Digite uma resposta");
       return;
     }
@@ -57,9 +44,12 @@ function App() {
     try {
       const response = await axios.post(`${serverUrl}/submit-answer`, {
         user_answer: answer,
-      });
-      if (response.data.message === 'Answer submitted') {
-        loadNextQuestion();
+        primeira_pergunta: primeira_pergunta
+      } );
+      primeira_pergunta = primeira_pergunta + 1;
+      if (response.data.message === 'Next question') {
+        setQuestion(response.data.next_question);
+        setAnswer('');
       } else if (response.data.message === 'Quiz completed') {
         setResult(response.data.result);
         setQuizStarted(false);
@@ -99,7 +89,7 @@ function App() {
                   value={answer}
                   onChange={(e) => setAnswer(e.target.value)}
                 />
-                <button className='btn btn-primary' disabled={answer == null || answer == ""} onClick={submitAnswer}>Enviar Resposta</button>
+                <button className='btn btn-primary' disabled={answer == null || answer === ""} onClick={submitAnswer}>Enviar Resposta</button>
               </div>
             </div>
           )}

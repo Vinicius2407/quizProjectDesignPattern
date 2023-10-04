@@ -6,7 +6,6 @@ import json
 app = Flask(__name__)
 CORS(app)
 
-
 class Question:
     def __init__(self, id, pergunta, opcoes, resposta, tema, dificuldade):
         self.id = id
@@ -69,7 +68,7 @@ class Quiz:
         acertos = 0
         Strategy.ordenar(self.vetor, 2)  # Alterei para questões ordenadas como padrão
 
-    def avaliarResposta(self, resposta):
+    def avaliar_resposta(self, resposta):
         if resposta == self.vetor[self.questoes].resposta:
             self.resultado += 1
         self.questoes += 1
@@ -77,52 +76,54 @@ class Quiz:
             return True  # O quiz está completo
         return False  # O quiz ainda não está completo
 
-    def getProximaQuestao(self):
+    def get_proxima_questao(self):
         if self.questoes >= len(self.vetor):
             return None
         return self.vetor[self.questoes]
 
 
 if __name__ == "__main__":
+    quiz_instance = Quiz()  # Move this line here to create the Quiz instance
+
+    @app.route("/start-quiz", methods=["GET"])
+    def start_quiz():
+        # Inicialize um novo quiz
+        quiz_instance.criaQuiz("../data/perguntas.json")
+        return jsonify({"message": "Quiz started"})
+
+    @app.route("/submit-answer", methods=["POST"])
+    def submit_answer():
+        data = request.get_json()
+        user_ans = data.get("user_answer", "").upper()
+        primeira_pergunta = data.get("primeira_pergunta", 0)
+        if quiz_instance.avaliar_resposta(user_ans):
+            # Changed the message to indicate a successful answer submission
+            return jsonify({"message": "Quiz Completed", "result": quiz_instance.resultado})
+
+        if user_ans != "" or primeira_pergunta == 0:
+            next_question = quiz_instance.get_proxima_questao()
+
+            if next_question is not None:
+                return jsonify(
+                    {
+                        "message": "Next question",
+                        "result": quiz_instance.resultado,
+                        "next_question": {
+                            "id": next_question.id,
+                            "pergunta": next_question.pergunta,
+                            "opcoes": next_question.opcoes,
+                            "tema": next_question.tema,
+                            "dificuldade": next_question.dificuldade,
+                        },
+                    }
+                )
+            else:
+                return_json = jsonify(
+                    {"message": "Quiz completed", "result": quiz_instance.resultado}
+                )
+
+                return return_json
+        else:
+            return jsonify({"message": "Next question"})
+
     app.run(debug=True)
-
-    quiz_instance = Quiz()
-
-@app.route("/start-quiz", methods=["GET"])
-def start_quiz():
-    # Inicialize um novo quiz
-    quiz_instance.criaQuiz("quizProjectBackEnd\data\perguntas.json")
-    return jsonify({"message": "Quiz started"})
-
-@app.route("/submit-answer", methods=["POST"])
-def submit_answer():
-    data = request.get_json()
-    user_ans = data.get("user_answer", "").upper()
-
-    if quiz_instance.avaliarResposta(user_ans):
-        return jsonify(
-            {"message": "Quiz completed", "result": quiz_instance.resultado}
-        )
-
-    next_question = quiz_instance.getProximaQuestao()
-
-    if next_question is not None:
-        return jsonify(
-            {
-                "message": "Answer submitted",
-                "result": quiz_instance.resultado,
-                "next_question": {
-                    "id": next_question.id,
-                    "pergunta": next_question.pergunta,
-                    "opcoes": next_question.opcoes,
-                    "tema": next_question.tema,
-                    "dificuldade": next_question.dificuldade,
-                },
-            }
-        )
-    else:
-        json = jsonify(
-            {"message": "Quiz completed", "result": quiz_instance.resultado}
-        )
-
-        return json

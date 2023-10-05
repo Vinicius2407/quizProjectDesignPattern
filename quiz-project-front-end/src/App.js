@@ -8,6 +8,7 @@ function App() {
   const [question, setQuestion] = useState(null);
   const [answer, setAnswer] = useState('');
   const [result, setResult] = useState(null);
+  const [dificuldade, setDificuldade] = useState(1);
 
   var primeira_pergunta = 0;
 
@@ -24,7 +25,7 @@ function App() {
 
   const startQuiz = async () => {
     try {
-      const response = await axios.get(`${serverUrl}/start-quiz`, axiosConfig);
+      const response = await axios.get(`${serverUrl}/start-quiz/${dificuldade}`, axiosConfig);
       if (response.data.message === 'Quiz started') {
         setQuizStarted(true);
         submitAnswer();
@@ -45,7 +46,7 @@ function App() {
       const response = await axios.post(`${serverUrl}/submit-answer`, {
         user_answer: answer,
         primeira_pergunta: primeira_pergunta
-      } );
+      });
       primeira_pergunta = primeira_pergunta + 1;
       if (response.data.message === 'Next question') {
         setQuestion(response.data.next_question);
@@ -67,7 +68,47 @@ function App() {
     <div className="App">
       <h1>Quiz App</h1>
       {!quizStarted ? (
-        <button onClick={startQuiz}>Iniciar Quiz</button>
+        <div className='dificuldade'>
+          <h2>Escolha a dificuldade:</h2>
+
+          <div className='dificuldade-opcoes'>
+            <label htmlFor='Facil'>
+              <input
+                type='radio'
+                id='1'
+                name='dificuldade'
+                value='1'
+                checked={dificuldade === 1}
+                onChange={() => setDificuldade(1)}
+              />
+              Facil
+            </label>
+            <label htmlFor='Medio'>
+              <input
+                type='radio'
+                id='2'
+                name='dificuldade'
+                value='2'
+                checked={dificuldade === 2}
+                onChange={() => setDificuldade(2)}
+              />
+              Medio
+            </label>
+            <label htmlFor='Dificil'>
+              <input
+                type='radio'
+                id='3'
+                name='dificuldade'
+                value='3'
+                checked={dificuldade === 3}
+                onChange={() => setDificuldade(3)}
+              />
+              Dificil
+            </label>
+          </div>
+
+          <button onClick={startQuiz}>Iniciar Quiz</button>
+        </div>
       ) : (
         <div className='pergunta'>
           {question && (

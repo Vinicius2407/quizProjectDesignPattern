@@ -31,9 +31,21 @@ class QuestionFactory:
 
 class Strategy:
     @staticmethod
-    def ordenar(vetor, option):
-        if option == StrategyEnum.ORDENADO.value:
-            vetor.sort(key=lambda x: (x.tema, x.dificuldade))
+    def escolher_dificuldade(vetor, dificuldade):
+        vetor2 = vetor.copy()
+        vetor.clear()
+        if dificuldade == StrategyEnum.DIFICIL.value:
+            for i in vetor2:
+                if i.dificuldade == StrategyEnum.DIFICIL.value:
+                    vetor.append(i)
+        elif dificuldade == StrategyEnum.MEDIO.value:
+            for i in vetor2:
+                if i.dificuldade == StrategyEnum.MEDIO.value:
+                    vetor.append(i)
+        elif dificuldade == StrategyEnum.FACIL.value:
+            for i in vetor2:
+                if i.dificuldade == StrategyEnum.FACIL.value:
+                    vetor.append(i)
         else:
             random.shuffle(vetor)
 
@@ -42,8 +54,9 @@ from enum import Enum
 
 
 class StrategyEnum(Enum):
-    ORDENADO = 1
-    EMBARALHAR = 2
+    FACIL = 1
+    MEDIO = 2
+    DIFICIL = 3
 
 
 class Quiz:
@@ -53,20 +66,23 @@ class Quiz:
         self.resultado = 0
         self.questoes = 0
         self.vetor = []
+        self.dificuldade = 0
 
     def __new__(cls, *args, **kwargs):
         if cls._instance is None:
             cls._instance = super().__new__(cls)
         return cls._instance
 
-    def criaQuiz(self, filename):
+    def criaQuiz(self, filename, dificuldade):
         with open(filename, "r", encoding="utf-8-sig") as f:
             data = json.load(f)
 
         questions = data
         self.vetor = [QuestionFactory.create(q) for q in questions]
         acertos = 0
-        Strategy.ordenar(self.vetor, 2)  # Alterei para questões ordenadas como padrão
+        print(self.vetor)
+        Strategy.escolher_dificuldade(self.vetor, dificuldade)  # Escolher dificuldade
+        print(self.vetor)
 
     def avaliar_resposta(self, resposta):
         if resposta == self.vetor[self.questoes].resposta:
@@ -83,12 +99,15 @@ class Quiz:
 
 
 if __name__ == "__main__":
-    quiz_instance = Quiz()  # Move this line here to create the Quiz instance
+    quiz_instance = Quiz()
 
-    @app.route("/start-quiz", methods=["GET"])
-    def start_quiz():
+    @app.route("/start-quiz/<dificuldade>", methods=["GET"])
+    def start_quiz(dificuldade):
         # Inicialize um novo quiz
-        quiz_instance.criaQuiz("../data/perguntas.json")
+
+        dificuldade = int(dificuldade)
+
+        quiz_instance.criaQuiz("../data/perguntas.json", dificuldade)
         return jsonify({"message": "Quiz started"})
 
     @app.route("/submit-answer", methods=["POST"])
@@ -97,7 +116,7 @@ if __name__ == "__main__":
         user_ans = data.get("user_answer", "").upper()
         primeira_pergunta = data.get("primeira_pergunta", 0)
         if quiz_instance.avaliar_resposta(user_ans):
-            # Changed the message to indicate a successful answer submission
+            # Quiz completo
             return jsonify({"message": "Quiz Completed", "result": quiz_instance.resultado})
 
         if user_ans != "" or primeira_pergunta == 0:

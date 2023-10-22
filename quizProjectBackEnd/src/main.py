@@ -142,7 +142,7 @@ def get_question():
         )
     else:
         return jsonify(
-            {"message": "Quiz completed", "result": quiz_instance.resultado, "questoes_acertadas": str(quiz_instance.questoes_acertadas) + "/" + str(len(quiz_instance.vetor))}
+            {"message": "Quiz completed", "result": quiz_instance.resultado, "questoes_acertadas": str(quiz_instance.questoes_acertadas) + "/" + str(len(quiz_instance.vetor)) + ". O peso das perguntas com a dificuldade escolhida foi multiplicado por " + str(quiz_instance.difficulty_strategy.peso)}
         )
 
 @app.route("/submit-answer", methods=["POST"])

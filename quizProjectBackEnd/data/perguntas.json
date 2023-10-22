@@ -258,5 +258,265 @@
       "4": "Tipos que podem representar um valor ou um valor nulo."
     },
     "resposta": "4"
+  },
+  {
+    "id": 21,
+    "tema": "Python",
+    "dificuldade": 1,
+    "pergunta": "Qual é a função `print()` em Python usada para?",
+    "opcoes": {
+      "a": "Entrada de dados.",
+      "b": "Realizar operações matemáticas.",
+      "c": "Imprimir informações na tela.",
+      "d": "Executar comandos do sistema."
+    },
+    "resposta": "c"
+  },
+  {
+    "id": 22,
+    "tema": "Python",
+    "dificuldade": 1,
+    "pergunta": "O que é a interpolação de strings em Python?",
+    "opcoes": {
+      "a": "Uma técnica para substituir variáveis em uma string por seus valores.",
+      "b": "Uma técnica para criar strings aleatórias.",
+      "c": "Um método para dividir strings em substrings.",
+      "d": "Um processo de compilação de código."
+    },
+    "resposta": "a"
+  },
+  {
+    "id": 23,
+    "tema": "Python",
+    "dificuldade": 1,
+    "pergunta": "O que é uma exceção em Python?",
+    "opcoes": {
+      "a": "Um tipo de função especial.",
+      "b": "Um erro que ocorre durante a execução do programa.",
+      "c": "Um comentário no código.",
+      "d": "Um tipo de variável."
+    },
+    "resposta": "b"
+  },
+  {
+    "id": 24,
+    "tema": "Java",
+    "dificuldade": 1,
+    "pergunta": "Qual é a principal diferença entre uma classe e um objeto em Java?",
+    "opcoes": {
+      "a": "Uma classe é uma instância de um objeto.",
+      "b": "Uma classe define um tipo, e um objeto é uma instância desse tipo.",
+      "c": "Uma classe é uma variável e um objeto é um método.",
+      "d": "Uma classe é um objeto em Java."
+    },
+    "resposta": "b"
+  },
+  {
+    "id": 25,
+    "tema": "JavaScript",
+    "dificuldade": 1,
+    "pergunta": "O que é uma variável em JavaScript?",
+    "opcoes": {
+      "a": "Um tipo de operador em JavaScript.",
+      "b": "Uma função especial para cálculos matemáticos.",
+      "c": "Um contêiner para armazenar dados, como números, strings ou objetos.",
+      "d": "Um tipo de comentário em JavaScript."
+    },
+    "resposta": "c"
+  },
+  {
+    "id": 26,
+    "tema": "JavaScript",
+    "dificuldade": 1,
+    "pergunta": "O que é um loop 'for' em JavaScript?",
+    "opcoes": {
+      "a": "Uma estrutura de decisão em JavaScript.",
+      "b": "Um tipo de declaração de função.",
+      "c": "Um controle de fluxo que permite repetir um bloco de código várias vezes.",
+      "d": "Uma variável global em JavaScript."
+    },
+    "resposta": "c"
+  },
+  {
+    "id": 27,
+    "tema": "HTML",
+    "dificuldade": 1,
+    "pergunta": "O que significa HTML?",
+    "opcoes": {
+      "a": "HyperText Markup Language",
+      "b": "High-Level Text Management Language",
+      "c": "Hyper Transfer Text Language",
+      "d": "Home Tool Markup Language"
+    },
+    "resposta": "a"
+  },
+  {
+    "id": 28,
+    "tema": "HTML",
+    "dificuldade": 1,
+    "pergunta": "Qual tag HTML é usada para criar um link?",
+    "opcoes": {
+      "a": "<link>",
+      "b": "<a>",
+      "c": "<href>",
+      "d": "<url>"
+    },
+    "resposta": "b"
+  },
+  {
+    "id": 29,
+    "tema": "CSS",
+    "dificuldade": 1,
+    "pergunta": "O que significa CSS?",
+    "opcoes": {
+      "a": "Creative Style Sheets",
+      "b": "Cascading Style Sheets",
+      "c": "Computer Style Sheets",
+      "d": "Colorful Style Sheets"
+    },
+    "resposta": "b"
+  },
+  {
+    "id": 30,
+    "tema": "CSS",
+    "dificuldade": 1,
+    "pergunta": "Qual propriedade CSS é usada para definir a cor do texto?",
+    "opcoes": {
+      "a": "font-color",
+      "b": "text-color",
+      "c": "color",
+      "d": "text-style"
+    },
+    "resposta": "c"
+  },
+  {
+    "id": 31,
+    "tema": "SQL",
+    "dificuldade": 1,
+    "pergunta": "O que significa SQL?",
+    "opcoes": {
+      "a": "Structured Query Language",
+      "b": "Simple Query Language",
+      "c": "System Query Language",
+      "d": "Sequential Query Language"
+    },
+    "resposta": "a"
+  },
+  {
+    "id": 32,
+    "tema": "SQL",
+    "dificuldade": 1,
+    "pergunta": "Qual comando SQL é usado para selecionar todos os registros de uma tabela?",
+    "opcoes": {
+      "a": "SELECT * FROM table_name",
+      "b": "SELECT RECORDS * FROM table_name",
+      "c": "SELECT ALL FROM table_name",
+      "d": "SELECT RECORDS FROM table_name"
+    },
+    "resposta": "a"
+  },
+  {
+    "id": 33,
+    "tema": "C++",
+    "dificuldade": 2,
+    "pergunta": "O que é um ponteiro em C++?",
+    "opcoes": {
+      "a": "Uma variável que armazena um valor inteiro.",
+      "b": "Um tipo de dado para armazenar texto.",
+      "c": "Um tipo de variável que armazena o endereço de memória de outra variável.",
+      "d": "Um operador matemático."
+    },
+    "resposta": "c"
+  },
+  {
+    "id": 34,
+    "tema": "C++",
+    "dificuldade": 2,
+    "pergunta": "Qual é a diferença entre uma classe e uma estrutura em C++?",
+    "opcoes": {
+      "a": "Não há diferença, ambos são usados para o mesmo propósito.",
+      "b": "Uma classe permite herança e possui membros privados, enquanto uma estrutura não permite herança e possui membros públicos por padrão.",
+      "c": "Uma estrutura permite herança e possui membros privados, enquanto uma classe não permite herança e possui membros públicos por padrão.",
+      "d": "Uma estrutura é usada apenas para armazenar dados, enquanto uma classe é usada para definir funções."
+    },
+    "resposta": "b"
+  },
+  {
+    "id": 35,
+    "tema": "Java",
+    "dificuldade": 2,
+    "pergunta": "O que é o polimorfismo em Java?",
+    "opcoes": {
+      "a": "Uma técnica para ocultar a implementação de uma classe.",
+      "b": "Um conceito em que objetos de diferentes classes podem ser tratados de maneira uniforme.",
+      "c": "Uma técnica para criar métodos privados em uma classe.",
+      "d": "Um conceito relacionado à construção de interfaces gráficas."
+    },
+    "resposta": "b"
+  },
+  {
+    "id": 36,
+    "tema": "Java",
+    "dificuldade": 2,
+    "pergunta": "O que é um construtor em Java?",
+    "opcoes": {
+      "a": "Uma classe que não pode ser instanciada.",
+      "b": "Um método especial que é chamado quando um objeto é criado.",
+      "c": "Uma classe que herda de outra classe.",
+      "d": "Um método estático em uma classe."
+    },
+    "resposta": "b"
+  },
+  {
+    "id": 37,
+    "tema": "C#",
+    "dificuldade": 2,
+    "pergunta": "O que é um 'delegate' em C#?",
+    "opcoes": {
+      "a": "Uma classe que não pode ser derivada.",
+      "b": "Um tipo de dado usado para armazenar números inteiros.",
+      "c": "Um tipo especial de variável que pode conter métodos.",
+      "d": "Um tipo de loop em C#."
+    },
+    "resposta": "c"
+  },
+  {
+    "id": 38,
+    "tema": "C#",
+    "dificuldade": 2,
+    "pergunta": "O que é 'LINQ' em C#?",
+    "opcoes": {
+      "a": "Uma linguagem de programação criada pela Microsoft.",
+      "b": "Uma biblioteca para consulta de dados em coleções .NET.",
+      "c": "Um tipo de interface gráfica em C#.",
+      "d": "Uma técnica para criptografia de dados em C#."
+    },
+    "resposta": "b"
+  },
+  {
+    "id": 39,
+    "tema": "Web Development",
+    "dificuldade": 3,
+    "pergunta": "O que é CORS (Cross-Origin Resource Sharing) em desenvolvimento web?",
+    "opcoes": {
+      "a": "Um tipo de banco de dados utilizado em servidores web.",
+      "b": "Uma técnica para ocultar recursos da web de outros domínios.",
+      "c": "Um mecanismo que permite que recursos da web sejam solicitados de um domínio diferente ao domínio do recurso solicitante.",
+      "d": "Uma técnica de otimização de cache em navegadores."
+    },
+    "resposta": "c"
+  },
+  {
+    "id": 40,
+    "tema": "Web Development",
+    "dificuldade": 3,
+    "pergunta": "O que é REST (Representational State Transfer) em desenvolvimento web?",
+    "opcoes": {
+      "a": "Um protocolo de transferência de arquivos.",
+      "b": "Um modelo arquitetural que define um conjunto de restrições para criar serviços web.",
+      "c": "Uma técnica para renderização de gráficos na web.",
+      "d": "Um protocolo de comunicação de dispositivos IoT (Internet of Things)."
+    },
+    "resposta": "b"
   }
 ]

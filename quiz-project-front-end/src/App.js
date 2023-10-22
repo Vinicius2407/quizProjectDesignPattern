@@ -23,7 +23,7 @@ function App() {
       'Content-Type': 'application/json',
     },
   };
-  
+
   const axiosInstance = axios.create(axiosConfig);
 
   const startQuiz = async () => {
@@ -44,18 +44,18 @@ function App() {
       const response = await axiosInstance.post(`/submit-answer`, {
         user_answer: answer
       });
-     
+
       response.data.message === 'Answer submitted' && getQuestion();
 
     } catch (error) {
       console.error('Erro ao enviar resposta', error);
     }
   };
-  
+
   const getQuestion = async () => {
     try {
       const response = await axiosInstance.get(`/get-question`);
-       if (response.data.message === 'Next question') {
+      if (response.data.message === 'Next question') {
         setQuestion(response.data.next_question);
         setAnswer('');
       } else if (response.data.message === 'Quiz completed') {
@@ -78,7 +78,7 @@ function App() {
         setAnswer('');
         setResult(null);
         // primeira_pergunta = 0;
-        startQuiz();
+        // startQuiz();
       }
     }
     catch (error) {
@@ -95,43 +95,47 @@ function App() {
       <h1>Quiz App</h1>
       {!quizStarted ? (
         <div className='dificuldade'>
-          <h2>Escolha a dificuldade:</h2>
+          {result == null &&
+            <div>
+              <h2>Escolha a dificuldade:</h2>
 
-          <div className='dificuldade-opcoes'>
-            <label htmlFor='Facil'>
-              <input
-                type='radio'
-                id='1'
-                name='dificuldade'
-                value='1'
-                checked={dificuldade === 1}
-                onChange={() => setDificuldade(1)}
-              />
-              Facil
-            </label>
-            <label htmlFor='Medio'>
-              <input
-                type='radio'
-                id='2'
-                name='dificuldade'
-                value='2'
-                checked={dificuldade === 2}
-                onChange={() => setDificuldade(2)}
-              />
-              Medio
-            </label>
-            <label htmlFor='Dificil'>
-              <input
-                type='radio'
-                id='3'
-                name='dificuldade'
-                value='3'
-                checked={dificuldade === 3}
-                onChange={() => setDificuldade(3)}
-              />
-              Dificil
-            </label>
-          </div>
+              <div className='dificuldade-opcoes'>
+                <label htmlFor='Facil'>
+                  <input
+                    type='radio'
+                    id='1'
+                    name='dificuldade'
+                    value='1'
+                    checked={dificuldade === 1}
+                    onChange={() => setDificuldade(1)}
+                  />
+                  Facil
+                </label>
+                <label htmlFor='Medio'>
+                  <input
+                    type='radio'
+                    id='2'
+                    name='dificuldade'
+                    value='2'
+                    checked={dificuldade === 2}
+                    onChange={() => setDificuldade(2)}
+                  />
+                  Medio
+                </label>
+                <label htmlFor='Dificil'>
+                  <input
+                    type='radio'
+                    id='3'
+                    name='dificuldade'
+                    value='3'
+                    checked={dificuldade === 3}
+                    onChange={() => setDificuldade(3)}
+                  />
+                  Dificil
+                </label>
+              </div>
+            </div>
+          }
 
           {!quizStarted && result == null && <button className='btn btn-primary' onClick={startQuiz}>Iniciar Quiz</button>}
           {!quizStarted && result != null && <button className='btn btn-primary' onClick={reiniciarQuiz}>Tentar Novamente</button>}

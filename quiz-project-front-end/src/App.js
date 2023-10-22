@@ -9,23 +9,26 @@ function App() {
   const [answer, setAnswer] = useState('');
   const [result, setResult] = useState(null);
   const [dificuldade, setDificuldade] = useState(1);
+  const [questoesAcertadas, setQuestoesAcertadas] = useState('0');
 
-  var primeira_pergunta = 0;
 
   // Defina o URL do servidor Flask
   const serverUrl = 'http://localhost:5000';
 
   // Defina o cabeçalho 'Origin' para corresponder ao domínio do seu aplicativo React
   const axiosConfig = {
+    baseURL: serverUrl,
     headers: {
-      'Origin': 'http://localhost:3000', // Substitua pelo domínio real do seu aplicativo React
-      'Content-Type': 'application/json'
+      'Origin': 'http://localhost:3000',  // Substitua pelo domínio real do seu aplicativo React
+      'Content-Type': 'application/json',
     },
   };
+  
+  const axiosInstance = axios.create(axiosConfig);
 
   const startQuiz = async () => {
     try {
-      const response = await axios.get(`${serverUrl}/start-quiz/${dificuldade}`, axiosConfig);
+      const response = await axiosInstance.get(`/start-quiz/${dificuldade}`);
       if (response.data.message === 'Quiz started') {
         setQuizStarted(true);
         submitAnswer();
@@ -36,29 +39,42 @@ function App() {
   };
 
   const submitAnswer = async () => {
-
-    if ((answer === null || answer === "") && (primeira_pergunta !== 0)) {
-      alert("Digite uma resposta");
-      return;
-    }
-
     try {
-      const response = await axios.post(`${serverUrl}/submit-answer`, {
-        user_answer: answer,
-        primeira_pergunta: primeira_pergunta
+      const response = await axiosInstance.post(`/submit-answer`, {
+        user_answer: answer
       });
-      primeira_pergunta = primeira_pergunta + 1;
       if (response.data.message === 'Next question') {
         setQuestion(response.data.next_question);
         setAnswer('');
       } else if (response.data.message === 'Quiz completed') {
         setResult(response.data.result);
+        setQuestoesAcertadas(response.data.questoes_acertadas)
         setQuizStarted(false);
       }
     } catch (error) {
       console.error('Erro ao enviar resposta', error);
     }
   };
+  
+  
+
+  const reiniciarQuiz = async () => {
+    try {
+      const response = await axiosInstance.get(`/restart-quiz`);
+      console.log(response);
+      if (response.data.message === 'Quiz restarted') {
+        setQuizStarted(false);
+        setQuestion(null);
+        setAnswer('');
+        setResult(null);
+        // primeira_pergunta = 0;
+        startQuiz();
+      }
+    }
+    catch (error) {
+      console.error('Erro ao reiniciar o quiz', error);
+    }
+  }
 
   function setAnswerValue(valor) {
     setAnswer(valor.toString());
@@ -107,7 +123,9 @@ function App() {
             </label>
           </div>
 
-          <button onClick={startQuiz}>Iniciar Quiz</button>
+          {!quizStarted && result == null && <button className='btn btn-primary' onClick={startQuiz}>Iniciar Quiz</button>}
+          {!quizStarted && result != null && <button className='btn btn-primary' onClick={reiniciarQuiz}>Tentar Novamente</button>}
+
         </div>
       ) : (
         <div className='pergunta'>
@@ -136,7 +154,8 @@ function App() {
           )}
         </div>
       )}
-      {result !== null && <p>Resultado Final: {result}</p>}
+      {result !== null && <p>Resultado Final: {result} - Questões acertadas: {questoesAcertadas}</p>}
+      {/* {result !== null && <button onClick={() => reiniciarQuiz()}>Reiniciar Quiz</button>} */}
     </div>
   );
 }

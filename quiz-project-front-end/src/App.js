@@ -19,7 +19,7 @@ function App() {
   const axiosConfig = {
     baseURL: serverUrl,
     headers: {
-      'Origin': 'http://localhost:3000',  // Substitua pelo domínio real do seu aplicativo React
+      // 'Origin': 'http://localhost:3000',  // Substitua pelo domínio real do seu aplicativo React
       'Content-Type': 'application/json',
     },
   };
@@ -31,7 +31,8 @@ function App() {
       const response = await axiosInstance.get(`/start-quiz/${dificuldade}`);
       if (response.data.message === 'Quiz started') {
         setQuizStarted(true);
-        submitAnswer();
+        // submitAnswer();
+        getQuestion();
       }
     } catch (error) {
       console.error('Erro ao iniciar o quiz', error);
@@ -43,7 +44,18 @@ function App() {
       const response = await axiosInstance.post(`/submit-answer`, {
         user_answer: answer
       });
-      if (response.data.message === 'Next question') {
+     
+      response.data.message === 'Answer submitted' && getQuestion();
+
+    } catch (error) {
+      console.error('Erro ao enviar resposta', error);
+    }
+  };
+  
+  const getQuestion = async () => {
+    try {
+      const response = await axiosInstance.get(`/get-question`);
+       if (response.data.message === 'Next question') {
         setQuestion(response.data.next_question);
         setAnswer('');
       } else if (response.data.message === 'Quiz completed') {
@@ -52,11 +64,9 @@ function App() {
         setQuizStarted(false);
       }
     } catch (error) {
-      console.error('Erro ao enviar resposta', error);
+      console.error('Erro ao obter a próxima pergunta', error);
     }
   };
-  
-  
 
   const reiniciarQuiz = async () => {
     try {

@@ -73,7 +73,7 @@ class Quiz:
 
     def __init__(self):
         self.resultado = 0
-        self.questoes = 1
+        self.questoes = 0
         self.questoes_acertadas = 0
         self.vetor = []
         self.difficulty_strategy = None
@@ -123,22 +123,14 @@ def start_quiz(dificuldade):
     except ValueError:
         return jsonify({"error": "Dificuldade não reconhecida"})
 
-@app.route("/submit-answer", methods=["POST"])
-def submit_answer():
+@app.route("/get-question", methods=["GET"])
+def get_question():
     global quiz_instance
-    data = request.get_json()
-    user_ans = data.get("user_answer", "").upper()
-
-    if user_ans != "":
-        quiz_instance.avaliar_resposta(user_ans)
-
     next_question = quiz_instance.get_proxima_questao()
-
     if next_question is not None:
         return jsonify(
             {
                 "message": "Next question",
-                "result": quiz_instance.resultado,
                 "next_question": {
                     "id": next_question.id,
                     "pergunta": next_question.pergunta,
@@ -152,6 +144,17 @@ def submit_answer():
         return jsonify(
             {"message": "Quiz completed", "result": quiz_instance.resultado, "questoes_acertadas": str(quiz_instance.questoes_acertadas) + "/" + str(len(quiz_instance.vetor))}
         )
+
+@app.route("/submit-answer", methods=["POST"])
+def submit_answer():
+    global quiz_instance
+    data = request.get_json()
+    user_ans = data.get("user_answer", "").upper()
+
+    if user_ans != "":
+        quiz_instance.avaliar_resposta(user_ans)
+
+    return jsonify({"message": "Answer submitted"})
 
 
 @app.route("/restart-quiz", methods=["GET"])

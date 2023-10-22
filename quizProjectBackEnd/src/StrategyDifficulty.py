@@ -15,7 +15,7 @@ class WeightedDifficultyStrategy(DifficultyStrategy):
         selected_questions = []
         for question in questions:
             if question.dificuldade == self.difficulty:
-                question.peso += self.peso  # Multiplica o peso da pergunta
+                question.peso += self.peso  # Soma o peso da pergunta
                 selected_questions.append(question)  # Adiciona a pergunta com peso multiplicado
                 random.shuffle(selected_questions)  # Embaralha as perguntas
 

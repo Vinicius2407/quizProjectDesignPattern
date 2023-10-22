@@ -8,7 +8,7 @@ class Question:
         self.resposta = resposta
         self.tema = tema
         self.dificuldade = dificuldade
-        self.peso = peso  # Adicionamos um campo para o peso
+        self.peso = peso
 
 class QuestionFactory:
     @staticmethod
@@ -20,5 +20,5 @@ class QuestionFactory:
             q["resposta"],
             q["tema"],
             StrategyEnum(q["dificuldade"]),
-            q.get("peso", 2)  # Peso padrão é 2 se não estiver definido
+            q.get("peso")
         )

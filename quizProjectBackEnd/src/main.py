@@ -9,18 +9,15 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-# Resto do código do servidor
-
-
 class Question:
     def __init__(self, id, pergunta, opcoes, resposta, tema, dificuldade, peso=1):
         self.id = id
-        self.pergunta = pergunta
-        self.opcoes = opcoes
-        self.resposta = resposta
-        self.tema = tema
-        self.dificuldade = dificuldade
-        self.peso = peso  # Adicionamos um campo para o peso
+        self.question = pergunta
+        self.options = opcoes
+        self.answer = resposta
+        self.theme = tema
+        self.difficulty = dificuldade
+        self.weight = peso
 
 class QuestionFactory:
     @staticmethod
@@ -32,135 +29,132 @@ class QuestionFactory:
             q["resposta"],
             q["tema"],
             StrategyEnum(q["dificuldade"]),
-            q.get("peso", 2)  # Peso padrão é 2 se não estiver definido
+            q.get("peso", 2)
         )
 
 class DifficultyStrategy:
-    def select_questions(self, questions):
+    def selectQuestions(self, questions):
         pass
 
-class WeightedDifficultyStrategy(DifficultyStrategy):
-    def __init__(self, difficulty, peso):
+class WeightsOfDifficulties(DifficultyStrategy):
+    def __init__(self, difficulty, weight):
         self.difficulty = difficulty
-        self.peso = peso
+        self.weight = weight
 
-    def select_questions(self, questions):
+    def selectQuestions(self, questions):
         selected_questions = []
         for question in questions:
-            if question.dificuldade == self.difficulty:
-                question.peso += self.peso  # Multiplica o peso da pergunta
-                selected_questions.append(question)  # Adiciona a pergunta com peso multiplicado
-                random.shuffle(selected_questions)  # Embaralha as perguntas
+            if question.difficulty == self.difficulty:
+                question.weight += self.weight
+                selected_questions.append(question)
+                random.shuffle(selected_questions)
 
         return selected_questions
 
 class StrategyEnum(Enum):
-    FACIL = 1
-    MEDIO = 2
-    DIFICIL = 3
+    EASY = 1
+    MEDIUM = 2
+    HARD = 3
 
-# Nova função para obter a estratégia com peso
-def get_weighted_difficulty_strategy(dificuldade):
-    if dificuldade == StrategyEnum.FACIL:
-        return WeightedDifficultyStrategy(dificuldade, 2)  # Dificuldade fácil tem peso 2
-    elif dificuldade == StrategyEnum.MEDIO:
-        return WeightedDifficultyStrategy(dificuldade, 4)  # Dificuldade média tem peso 4
-    elif dificuldade == StrategyEnum.DIFICIL:
-        return WeightedDifficultyStrategy(dificuldade, 6)  # Dificuldade difícil tem peso 6
+def weightOfDifficulty(difficulty):
+    if difficulty == StrategyEnum.EASY:
+        return WeightsOfDifficulties(difficulty, 2)
+    elif difficulty == StrategyEnum.MEDIUM:
+        return WeightsOfDifficulties(difficulty, 4)
+    elif difficulty == StrategyEnum.HARD:
+        return WeightsOfDifficulties(difficulty, 6)
 
 class Quiz:
     _instance = None
 
     def __init__(self):
-        self.resultado = 0
-        self.questoes = 0
-        self.questoes_acertadas = 0
-        self.vetor = []
-        self.difficulty_strategy = None
+        self.result = 0
+        self.questions = 0
+        self.acceptedQuestions = 0
+        self.vector = []
+        self.difficultyStrategy = None
 
     def __new__(cls, *args, **kwargs):
         if cls._instance is None:
             cls._instance = super().__new__(cls)
         return cls._instance
 
-    def criaQuiz(self, filename):
+    def createQuiz(self, filename):
         with open(filename, "r", encoding="utf-8-sig") as f:
             data = json.load(f)
 
         questions = data
-        self.vetor = [QuestionFactory.create(q) for q in questions]
+        self.vector = [QuestionFactory.create(q) for q in questions]
 
-        selected_questions = self.difficulty_strategy.select_questions(self.vetor)
-        self.vetor = selected_questions
-        print(self.vetor)
+        selectedQuestions = self.difficultyStrategy.selectQuestions(self.vector)
+        self.vector = selectedQuestions
 
-    def avaliar_resposta(self, resposta):
-        if resposta == self.vetor[self.questoes].resposta:
-            self.resultado += self.vetor[self.questoes].peso
-            self.questoes_acertadas += 1
-        self.questoes += 1
-        if self.questoes >= len(self.vetor):
-            return True  # O quiz está completo
-        return False  # O quiz ainda não está completo
+    def rateResponse(self, response):
+        if response == self.vector[self.questions].answer:
+            self.result += self.vector[self.questions].weight
+            self.acceptedQuestions += 1
+        self.questions += 1
+        if self.questions >= len(self.vector):
+            return True
+        return False
 
-    def get_proxima_questao(self):
-        if self.questoes >= len(self.vetor):
+    def getNextQuestion(self):
+        if self.questions >= len(self.vector):
             return None
-        return self.vetor[self.questoes]
+        return self.vector[self.questions]
 
-@app.route("/start-quiz/<dificuldade>", methods=["GET"])
-def start_quiz(dificuldade):
+@app.route("/start-quiz/<difficulty>", methods=["GET"])
+def startQuiz(difficulty):
     global quiz_instance
     try:
-        numeroDificuldade = int(dificuldade)
-        dificuldade = StrategyEnum(numeroDificuldade)
-        weighted_difficulty_strategy = get_weighted_difficulty_strategy(dificuldade)
+        difficulty_enum = int(difficulty)
+        difficulty = StrategyEnum(difficulty_enum)
+        weighted_difficulty_strategy = weightOfDifficulty(difficulty)
         quiz_instance = Quiz()
-        quiz_instance.difficulty_strategy = weighted_difficulty_strategy
-        quiz_instance.criaQuiz("../data/perguntas.json")
+        quiz_instance.difficultyStrategy = weighted_difficulty_strategy
+        quiz_instance.createQuiz("../data/perguntas.json")
 
         return jsonify({"message": "Quiz started"})
     except ValueError:
-        return jsonify({"error": "Dificuldade não reconhecida"})
+        return jsonify({"error": "Unrecognized difficulty"})
 
 @app.route("/get-question", methods=["GET"])
-def get_question():
+def getQuestion():
     global quiz_instance
-    next_question = quiz_instance.get_proxima_questao()
-    if next_question is not None:
+    nextQuestion = quiz_instance.getNextQuestion()
+    if nextQuestion is not None:
         return jsonify(
             {
                 "message": "Next question",
                 "next_question": {
-                    "id": next_question.id,
-                    "pergunta": next_question.pergunta,
-                    "opcoes": next_question.opcoes,
-                    "tema": next_question.tema,
-                    "dificuldade": next_question.dificuldade.value,
+                    "id": nextQuestion.id,
+                    "question": nextQuestion.question,
+                    "options": nextQuestion.options,
+                    "theme": nextQuestion.theme,
+                    "difficulty": nextQuestion.difficulty.value,
                 },
             }
         )
     else:
         return jsonify(
-            {"message": "Quiz completed", "result": quiz_instance.resultado, "questoes_acertadas": str(quiz_instance.questoes_acertadas) + "/" + str(len(quiz_instance.vetor)) + ". O peso das perguntas com a dificuldade escolhida foi multiplicado por " + str(quiz_instance.difficulty_strategy.peso)}
+            {"message": "Quiz completed", "result": quiz_instance.result, "correct_answers": str(quiz_instance.acceptedQuestions) + "/" + str(len(quiz_instance.vector)) + ". The weight of questions with the chosen difficulty was multiplied by " + str(quiz_instance.difficultyStrategy.weight)}
         )
 
 @app.route("/submit-answer", methods=["POST"])
-def submit_answer():
+def submitAnswer():
     global quiz_instance
     data = request.get_json()
     user_ans = data.get("user_answer", "").upper()
 
     if user_ans != "":
-        quiz_instance.avaliar_resposta(user_ans)
+        quiz_instance.rateResponse(user_ans)
 
     return jsonify({"message": "Answer submitted"})
 
-
 @app.route("/restart-quiz", methods=["GET"])
-def restart_quiz():
+def restartQuiz():
     global quiz_instance
-    quiz_instance = None  # Defina a instância do Quiz como None para reiniciar
+    quiz_instance = None
     return jsonify({"message": "Quiz restarted"})
 
 if __name__ == "__main__":

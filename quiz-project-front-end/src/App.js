@@ -23,7 +23,7 @@ function App() {
       'Content-Type': 'application/json',
     },
   };
-  
+
   const axiosInstance = axios.create(axiosConfig);
 
   const startQuiz = async () => {
@@ -44,23 +44,23 @@ function App() {
       const response = await axiosInstance.post(`/submit-answer`, {
         user_answer: answer
       });
-     
+
       response.data.message === 'Answer submitted' && getQuestion();
 
     } catch (error) {
       console.error('Erro ao enviar resposta', error);
     }
   };
-  
+
   const getQuestion = async () => {
     try {
       const response = await axiosInstance.get(`/get-question`);
-       if (response.data.message === 'Next question') {
+      if (response.data.message === 'Next question') {
         setQuestion(response.data.next_question);
         setAnswer('');
       } else if (response.data.message === 'Quiz completed') {
         setResult(response.data.result);
-        setQuestoesAcertadas(response.data.questoes_acertadas)
+        setQuestoesAcertadas(response.data.correct_answers)
         setQuizStarted(false);
       }
     } catch (error) {
@@ -71,7 +71,6 @@ function App() {
   const reiniciarQuiz = async () => {
     try {
       const response = await axiosInstance.get(`/restart-quiz`);
-      console.log(response);
       if (response.data.message === 'Quiz restarted') {
         setQuizStarted(false);
         setQuestion(null);
@@ -143,12 +142,12 @@ function App() {
             <div>
               <div>
                 <h2>Pergunta:</h2>
-                <p>{question.pergunta}</p>
+                <p>{question.question}</p>
               </div>
               <h3>Opções:</h3>
               <ul>
-                {Object.keys(question.opcoes).map((chave, index) => (
-                  <li key={chave} onClick={() => setAnswerValue(index + 1)}>{index + 1} {question.opcoes[chave]}</li>
+                {Object.keys(question.options).map((chave, index) => (
+                  <li key={chave} onClick={() => setAnswerValue(index + 1)}>{index + 1} {question.options[chave]}</li>
                 ))}
               </ul>
               <div className='input-botao'>

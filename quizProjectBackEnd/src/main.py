@@ -32,6 +32,16 @@ class QuestionFactory:
             q.get("peso", 2)
         )
 
+class ScoreStrategy:
+    def __init__(self):
+        self.acertos = 0
+    def computeScore(self, quiz):
+        pass
+
+class EasyScoreStrategy(ScoreStrategy):
+    def computeScore(self, quiz):
+        return self.acertos * 0.8
+
 class DifficultyStrategy:
     def selectQuestions(self, questions):
         pass
@@ -107,12 +117,18 @@ class Quiz:
 def startQuiz(difficulty):
     global quiz_instance
     try:
+        scoreStrategy = None
+        if difficulty == 1:
+            scoreStrategy = EasyScoreStrategy()
+
         difficulty_enum = int(difficulty)
         difficulty = StrategyEnum(difficulty_enum)
         weighted_difficulty_strategy = weightOfDifficulty(difficulty)
         quiz_instance = Quiz()
         quiz_instance.difficultyStrategy = weighted_difficulty_strategy
         quiz_instance.createQuiz("../data/perguntas.json")
+        #acertos = 5
+        #scoreStrategy.computeScore(acertos)
 
         return jsonify({"message": "Quiz started"})
     except ValueError:

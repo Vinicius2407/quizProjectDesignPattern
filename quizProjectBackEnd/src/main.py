@@ -126,7 +126,7 @@ def startQuiz(difficulty):
         weighted_difficulty_strategy = weightOfDifficulty(difficulty)
         quiz_instance = Quiz()
         quiz_instance.difficultyStrategy = weighted_difficulty_strategy
-        quiz_instance.createQuiz("../data/perguntas.json")
+        quiz_instance.createQuiz("data\perguntas.json")
         #acertos = 5
         #scoreStrategy.computeScore(acertos)
 
@@ -153,7 +153,7 @@ def getQuestion():
         )
     else:
         return jsonify(
-            {"message": "Quiz completed", "result": quiz_instance.result, "correct_answers": str(quiz_instance.acceptedQuestions) + "/" + str(len(quiz_instance.vector)) + ". The weight of questions with the chosen difficulty was multiplied by " + str(quiz_instance.difficultyStrategy.weight)}
+            {"message": "Quiz completed", "result": quiz_instance.result, "correct_answers": str(quiz_instance.acceptedQuestions) + "/" + str(len(quiz_instance.vector))}
         )
 
 @app.route("/submit-answer", methods=["POST"])

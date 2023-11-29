@@ -33,17 +33,26 @@ class QuestionFactory:
         )
 
 class ScoreStrategy:
-    def __init__(self):
+    def __init__(self, dificuldade):
         self.acertos = 0
+        self.dificuldade = dificuldade
     def computeScore(self, quiz):
         pass
 
 class EasyScoreStrategy(ScoreStrategy):
     def computeScore(self, quiz):
-        return self.acertos * 0.8
+        self.acertos = round(quiz * 1.5)
+
+class MediumScoreStrategy(ScoreStrategy):
+      def computeScore(self, quiz):
+         self.acertos = round(quiz * 2)
+
+class HardScoreStrategy(ScoreStrategy):
+      def computeScore(self, quiz):
+         self.acertos = round(quiz * 2.5)
 
 class DifficultyStrategy:
-    def selectQuestions(self, questions):
+    def selectQuestions(self):
         pass
 
 class WeightsOfDifficulties(DifficultyStrategy):
@@ -101,9 +110,10 @@ class Quiz:
 
     def rateResponse(self, response):
         if response == self.vector[self.questions].answer:
-            self.result += self.vector[self.questions].weight
             self.acceptedQuestions += 1
+
         self.questions += 1
+
         if self.questions >= len(self.vector):
             return True
         return False
@@ -116,27 +126,36 @@ class Quiz:
 @app.route("/start-quiz/<difficulty>", methods=["GET"])
 def startQuiz(difficulty):
     global quiz_instance
+    global scoreStrategy
+
     try:
         scoreStrategy = None
-        if difficulty == 1:
-            scoreStrategy = EasyScoreStrategy()
+
+        if difficulty == "1":
+            scoreStrategy = EasyScoreStrategy(difficulty)
+        elif difficulty == "2":
+            scoreStrategy = MediumScoreStrategy(difficulty)
+        elif difficulty == "3":
+            scoreStrategy = HardScoreStrategy(difficulty)
 
         difficulty_enum = int(difficulty)
         difficulty = StrategyEnum(difficulty_enum)
+
         weighted_difficulty_strategy = weightOfDifficulty(difficulty)
+
         quiz_instance = Quiz()
         quiz_instance.difficultyStrategy = weighted_difficulty_strategy
         quiz_instance.createQuiz("../data/perguntas.json")
-        #acertos = 5
-        #scoreStrategy.computeScore(acertos)
 
         return jsonify({"message": "Quiz started"})
+
     except ValueError:
         return jsonify({"error": "Unrecognized difficulty"})
 
 @app.route("/get-question", methods=["GET"])
 def getQuestion():
     global quiz_instance
+
     nextQuestion = quiz_instance.getNextQuestion()
     if nextQuestion is not None:
         return jsonify(
@@ -152,8 +171,16 @@ def getQuestion():
             }
         )
     else:
+        scoreStrategy.computeScore(quiz_instance.acceptedQuestions)
+        dificuldadeEscolhida = ""
+        if scoreStrategy.dificuldade == '1':
+           dificuldadeEscolhida = "Fácil"
+        elif scoreStrategy.dificuldade == '2':
+           dificuldadeEscolhida = "Mediana"
+        elif scoreStrategy.dificuldade == '3':
+           dificuldadeEscolhida = "Difícil"
         return jsonify(
-            {"message": "Quiz completed", "result": quiz_instance.result, "correct_answers": str(quiz_instance.acceptedQuestions) + "/" + str(len(quiz_instance.vector)) + ". The weight of questions with the chosen difficulty was multiplied by " + str(quiz_instance.difficultyStrategy.weight)}
+            {"message": "Quiz completed", "result": scoreStrategy.acertos, "correct_answers": str(quiz_instance.acceptedQuestions) + "/" + str(len(quiz_instance.vector)) + ". A dificuldade escolhida foi a " + str(dificuldadeEscolhida) + "."}
         )
 
 @app.route("/submit-answer", methods=["POST"])

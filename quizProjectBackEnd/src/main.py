@@ -5,7 +5,7 @@ from enum import Enum
 
 from flask import Flask
 from flask_cors import CORS
-
+cq = 0
 app = Flask(__name__)
 CORS(app)
 
@@ -108,6 +108,12 @@ class Quiz:
         selectedQuestions = self.difficultyStrategy.selectQuestions(self.vector)
         self.vector = selectedQuestions
 
+
+    def isCorrect(self, response) -> bool:
+        if response == self.vector[self.questions].answer:
+            return True
+        return False
+
     def rateResponse(self, response):
         if response == self.vector[self.questions].answer:
             self.acceptedQuestions += 1
@@ -145,7 +151,10 @@ def startQuiz(difficulty):
 
         quiz_instance = Quiz()
         quiz_instance.difficultyStrategy = weighted_difficulty_strategy
-        quiz_instance.createQuiz("../data/perguntas.json")
+        # quiz_instance.createQuiz("../data/perguntas.json")
+        from pathlib import Path
+        json_file = Path(__file__).parent.parent / "data/perguntas.json"
+        quiz_instance.createQuiz(str(json_file))
 
         return jsonify({"message": "Quiz started"})
 
@@ -155,12 +164,14 @@ def startQuiz(difficulty):
 @app.route("/get-question", methods=["GET"])
 def getQuestion():
     global quiz_instance
-
+    global cq
     nextQuestion = quiz_instance.getNextQuestion()
     if nextQuestion is not None:
+        cq += 1
         return jsonify(
             {
                 "message": "Next question",
+                "total": len(quiz_instance.vector),
                 "next_question": {
                     "id": nextQuestion.id,
                     "question": nextQuestion.question,
@@ -183,11 +194,15 @@ def getQuestion():
             {"message": "Quiz completed", "result": scoreStrategy.acertos, "correct_answers": str(quiz_instance.acceptedQuestions) + "/" + str(len(quiz_instance.vector)) + ". A dificuldade escolhida foi a " + str(dificuldadeEscolhida) + "."}
         )
 
+
+## if not is_correct
+
 @app.route("/submit-answer", methods=["POST"])
 def submitAnswer():
     global quiz_instance
     data = request.get_json()
     user_ans = data.get("user_answer", "").upper()
+
 
     if user_ans != "":
         quiz_instance.rateResponse(user_ans)

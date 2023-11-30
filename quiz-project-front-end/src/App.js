@@ -134,12 +134,12 @@ function App() {
           </div>
 
           {!quizStarted && result == null && (
-            <button className="btn btn-primary" onClick={startQuiz}>
+            <button className="btn btn-primary" onClick={() => startQuiz()}>
               Iniciar Quiz
             </button>
           )}
           {!quizStarted && result != null && (
-            <button className="btn btn-primary" onClick={reiniciarQuiz(false)}>
+            <button className="btn btn-primary" onClick={() => reiniciarQuiz(false)}>
               Tentar Novamente
             </button>
           )}
@@ -154,13 +154,13 @@ function App() {
               </div>
               <h3>Opções:</h3>
               <ul>
-                {Object.keys(question.options).map((chave, index) => (
+                {Object.keys(question.options).map((key, index) => (
                   <li
-                    key={chave}
+                    key={key}
                     className={answer == index + 1 ? "selecionado" : ""}
                     onClick={() => setAnswerValue(index + 1)}
                   >
-                    {index + 1} {question.options[chave]}
+                    {index + 1} {question.options[key]}
                   </li>
                 ))}
               </ul>
@@ -175,7 +175,7 @@ function App() {
                 <button
                   className="btn btn-primary"
                   disabled={answer == null || answer === ""}
-                  onClick={submitAnswer}
+                  onClick={() => submitAnswer()}
                 >
                   Enviar Resposta
                 </button>
